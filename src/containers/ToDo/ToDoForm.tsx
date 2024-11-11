@@ -1,21 +1,25 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { addTask } from './ToDoTasksSlice.ts';
+import { useAppDispatch } from '../../app/store.ts';
 
 
 const ToDoForm = () => {
 const [taskTitle, setTaskTitle] = useState('');
-const dispatch = useDispatch();
+const dispatch = useAppDispatch()
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (taskTitle.trim()) {
-      dispatch();
-      setTaskTitle('');
+    if (taskTitle.trim() === '') {
+      alert('Task title cannot be empty');
+      return;
     }
+    dispatch(addTask(taskTitle));
+    setTaskTitle('');
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}
+    className="position-fixed bottom-0 start-0 w-100 p-4 bg-light d-flex gap-3">
       <input
         type="text"
         value={taskTitle}
