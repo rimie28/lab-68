@@ -10,7 +10,6 @@
     "preview": "vite preview",
     "format:check": "npx prettier . --check",
     "format": "npx prettier . --write"
-
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
